@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  <a class="govuk-back-link" href="javascript:window.history.back()">Back</a>
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">What was your level of sobriety at the time?</h1>
+
+      <form class="form" action="/confirmation" method="post">
+
+        <p>{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+{{ govukRadios({
+  idPrefix: "sobriety",
+  name: "sobriety",
+  fieldset: {
+    legend: {
+
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+  {
+     value: "As a proverbial judge",
+     text: "As a proverbial judge",
+     checked: checked("sobriety", "As a proverbial judge")
+ },
+ {
+     value: "I'd had a few ales",
+     text: "I'd had a few ales",
+     checked: checked("sobriety", "I'd had a few ales")
+ },
+ {
+     value: "I had more sail than ballast",
+     text: "I had more sail than ballast",
+     checked: checked("sobriety", "I had more sail than ballast")
+ }
+  ]
+}) }}</p>
+
+        <button class="govuk-button" data-module="govuk-button">Continue</button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
